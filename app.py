@@ -1047,5 +1047,5 @@ def restaurantMenuJSON(restaurant_id):
     items = db_session.query(MenuItem).filter_by(restaurant_id=restaurant.id).all()  # Updated to use db_session
     return jsonify(MenuItems=[i.serialize() for i in items])
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=8085)
+# if __name__ == '__main__':
+#     app.run(debug=True, host='0.0.0.0', port=8085)
