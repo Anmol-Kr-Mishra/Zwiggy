@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurants</title>
+    <link rel="icon" href="{{ url_for('static', filename='Zwiggylogo3.jpg') }}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='restaurant.css') }}">
+</head>
+<div class="top-buttons">
+    <a href="{{ url_for('logout') }}" class = "logout-button">LogOut</a>
+</div>
+<body>
+    <div class="res_header">
+        Restaurants List
+    </div>
+    
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <!-- <div class="flash-messages container"> -->
+      {% for category, message in messages %}
+      <p class="flash-messages {{ category }}">{{ message }}</p>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    </div>
+    <br>
+    <div class = 'create-new-button'>
+        <a href="{{ url_for('newRestaurant') }}">Add New Restaurant</a>
+    </div>
+    <br>
+    {% if  current_user.role == 'owner' or current_user.role == 'admin' %}
+    <div class="top-buttons">
+        <a href="{{ url_for('admin_dashboard') }}" class = "admin_dashboard-button">Admin Dashboard</a>
+    </div>{%endif%}
+    <br>
+    <div class="restaurants-container">
+        {% for i in restaurants %}
+        <div class="restaurant-item">
+            <a href="{{ url_for('restaurantMenu', restaurant_id=i.id) }}">{{ i.name }}</a>
+        </div>
+        {% endfor %}
+    </div>
+    <script src="{{ url_for('static', filename='sessionexpire.js') }}" defer></script>
+    <!-- <script src="http://localhost:8085/static/sessionexpire.js"></script> -->
+
+</body>
+
+</html>

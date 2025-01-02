@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login</title>
+    <link rel="icon" href="{{ url_for('static', filename='Zwiggylogo3.jpg') }}" type="image/x-icon">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='register.css') }}"
+    />
+  </head>
+  <body>
+    <div class="loader"></div>
+    <div class="register-container">
+      <h1>Login as Admin</h1>
+      <!-- Flash Messages -->
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} 
+      <div class="flash-messages container">
+        {% for category, message in messages %}
+        <p class="flash-messages {{ category }}">{{ message }}</p>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %}
+      <form action="{{ url_for('login') }}" method="POST" onsubmit="replaceHistoryState();">
+        <input type="text" name="username" placeholder="Username" required />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+
+        <!-- Custom CAPTCHA -->
+        <div class="captcha-container">
+          <div class="captcha">
+            <img id="captcha-image" src="{{ url_for('captcha_image') }}" alt="Captcha Image" />
+          </div>
+          <a href="#" id="refresh-captcha">Refresh</a>
+        </div>
+    <input
+      type="text"
+      name="captcha"
+      placeholder="Enter the CAPTCHA text"
+      class="captcha-input"
+      required
+    />        
+    <button type="submit">Login</button>
+      </form>
+
+      <p>
+        Don't have an account? <a href="{{ url_for('register') }}">Register</a>
+      </p>
+    </div>
+
+<script>
+      document.getElementById("refresh-captcha").addEventListener("click", function (event) {
+          event.preventDefault();
+          const captchaImage = document.getElementById("captcha-image");
+          const newCaptchaUrl ="{{ url_for('captcha_image') }}" + "?t=" + new Date().getTime();
+          captchaImage.src = newCaptchaUrl;});
+         document.addEventListener("contextmenu", function (event) {
+        event.preventDefault();
+        alert("Don't think you are a hacker using inspect element!!");
+      });
+    </script>
+  </body>
+</html>

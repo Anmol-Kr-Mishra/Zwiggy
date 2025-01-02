@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurants</title>
+    <link rel="icon" href="{{ url_for('static', filename='Zwiggylogo3.jpg') }}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='restaurant.css') }}">
+</head>
+
+
+<body>
+    <!-- Sidebar Toggle Button (Hamburger Menu Icon) -->
+    <div class="sidebar-toggle" onclick="toggleSidebar()">
+        &#9776; <!-- Hamburger Icon -->
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            {% if current_user.username != null %}
+                <!-- Display user info in sidebar -->
+                <div class="user-info-header">
+                    <img src="{{ url_for('static', filename='user_img.jpeg') }}" alt="User Image">
+                    <h4>{{ current_user.username.title() }}</h4>
+                </div>
+                <div class="user-info-footer">
+                    <a href="{{ url_for('user_logout') }}" class="user-info-logout-btn">Logout</a>
+                </div>
+            {% else %}
+                <div class="user-info-header">
+                    <img src="{{ url_for('static', filename='user_img.jpeg') }}" alt="User Image">
+                    <h4>GUEST</h4>
+                </div>
+            {% endif %}
+            <span class="close-btn" onclick="toggleSidebar()">&times;</span> <!-- Close Icon -->
+        </div>
+
+        <ul class="sidebar-nav">
+            
+            <li><a href="#" id="profile-link">Profile</a></li>
+            <li><a href="#" id="passchange-link">Change Password</a></li>
+            <li><a href="#" id="addchange-link">Change Address</a></li>
+            <li><a href="#" id="mailchange-link">Change Email-id</a></li>
+        </ul>
+    </div>
+    <!-- Profile Details Tab -->
+<div id="profile-tab" class="profile-tab">
+    <div class="profile-tab-header">
+        <span>User Details</span>
+        <button class="close-profile-tab" onclick="closeProfileTab()">×</button>
+    </div>
+    <div class="profile-tab-content">
+        {% if current_user.username != null %}
+            <p><strong>Name:</strong> {{ current_user.username.title() }}</p>
+            <p><strong>Email:</strong> {{ current_user.email }}</p>
+            <p><strong>Phone:</strong> {{ current_user.contact }}</p>
+            <p><strong>Address:</strong> {{ current_user.address }}</p>
+            <p><strong>Membership:</strong> {{ current_user.membership.title() }}</p>
+        {% else %}
+            <p>Please log in to see profile details.</p>
+        {% endif %}
+    </div>
+</div>
+
+
+<!-- Pass Change Tab -->
+<div id="passchange-tab" class="change-password-tab">
+    <div class="profile-tab-header">
+        <span>Change Password </span>
+        <button class="close-profile-tab" onclick="closePassChangeTab()">×</button>
+    </div>
+    <div class="profile-tab-content">
+        {% if current_user.username != null %}
+        
+        
+        <form action="{{ url_for('change_password') }}" method="POST" id="change-password-form">
+            <p>Current Password or OTP:</p>
+            <input type="password" name="current_password" id="current-password" required>
+            
+            <p>New Password:</p>
+            <input type="password" name="new_password" id="new-password" required>
+            
+            <p>Re-Enter New Password:</p>
+            <input type="password" name="confirm_new_password" id="confirm-new-password" required>
+            
+            <button type="submit" class="submit-btn" id="submit-btn">Submit</button>
+        </form>
+
+        {% else %}
+            <p>Please log in first.</p>
+        {% endif %}
+    </div>
+</div>
+
+<!--Check Password Matching -->
+<script>
+document.getElementById("change-password-form").addEventListener("submit", function(event) {
+    const newPassword = document.getElementById("new-password").value;
+    const confirmPassword = document.getElementById("confirm-new-password").value;
+
+    if (newPassword !== confirmPassword) {
+        event.preventDefault(); 
+        alert("New Password and Re-Enter New Password do not match!");
+    }
+});
+</script>
+
+
+<!-- Address Change Tab -->
+<div id="addchange-tab" class="change-password-tab">
+    <div class="profile-tab-header">
+        <span>Change Address </span>
+        <button class="close-profile-tab" onclick="closeAddChangeTab()">×</button>
+    </div>
+    <div class="profile-tab-content">
+        {% if current_user.username != null %}
+        
+        
+        <form action="{{ url_for('change_address') }}" method="POST" id="change-password-form">
+            <p>Enter your Password:</p>
+            <input type="password" name="current_password" id="current-password" required>
+            
+            <p>Updated Address:</p>
+            <input type="address" name="updated_address" id="updated_address" required>
+            
+            <button type="submit" class="submit-btn" id="submit-btn">Update Address</button>
+        </form>
+
+        {% else %}
+            <p>Please log in first.</p>
+        {% endif %}
+    </div>
+</div>
+
+
+<!-- Email ID Change Tab -->
+<div id="mailchange-tab" class="change-password-tab">
+    <div class="profile-tab-header">
+        <span>Change Email-id </span>
+        <button class="close-profile-tab" onclick="closeMailChangeTab()">×</button>
+    </div>
+    <div class="profile-tab-content">
+        {% if current_user.username != null %}
+        
+        
+        <form action="{{ url_for('change_mail') }}" method="POST" id="change-password-form">
+            <p>Enter your Password:</p>
+            <input type="password" name="current_password" id="current-password" required>
+            
+            <p>Enter Email-id:</p>
+            <input type="address" name="updated_mail" id="updated_mail" required>
+            
+            <button type="submit" class="submit-btn" id="submit-btn">Update Email-id</button>
+        </form>
+
+        {% else %}
+            <p>Please log in first.</p>
+        {% endif %}
+    </div>
+</div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <!-- Restaurants List -->
+        <div class="res_header">Restaurants List</div>
+
+        <!-- Login and Register buttons -->
+        {% if current_user.username == null %}
+        <!-- <div class="login-button"> -->
+            <a class="login-button" href="http://localhost:8085/user_register/">Login / Register</a>
+        <!-- </div> -->
+        {% endif %}
+
+        <!-- Search Form -->
+        <form method="GET" action="{{ url_for('search_restaurant') }}" class="search-form">
+            <input type="text" name="query" placeholder="Search restaurants..." value="{{ query }}">
+            <button type="submit">Search</button>
+        </form>
+
+       <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <!-- <div class="flash-messages container"> -->
+      {% for category, message in messages %}
+      <p class="flash-messages {{ category }}">{{ message }}</p>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    </div>
+
+        <!-- Restaurant List -->
+        <div class="restaurants-container">
+            {% if restaurants %}
+            {% for i in restaurants %}
+            <div class="restaurant-item">
+                <a href="{{ url_for('UserMenu', restaurant_id=i.id) }}">{{ i.name }}</a>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle the sidebar visibility
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            const toggleBtn = document.querySelector(".sidebar-toggle");
+            sidebar.classList.toggle("active"); // Toggle 'active' class
+            
+            // Toggle hamburger icon visibility
+            toggleBtn.style.display = sidebar.classList.contains("active") ? "none" : "block";
+        }
+
+        // Function to show the profile tab
+document.getElementById("profile-link").addEventListener("click", function (event) {
+    event.preventDefault(); 
+    const profileTab = document.getElementById("profile-tab");
+    profileTab.style.display = "block"; 
+});
+
+// Function to close the profile tab
+function closeProfileTab() {
+    const profileTab = document.getElementById("profile-tab");
+    profileTab.style.display = "none"; 
+}
+
+// Function to show the pass change tab
+    document.getElementById("passchange-link").addEventListener("click", function (event) {
+    event.preventDefault(); 
+    const profileTab = document.getElementById("passchange-tab");
+    profileTab.style.display = "block"; 
+});
+
+// Function to close the pass change tab
+function closePassChangeTab() {
+    const profileTab = document.getElementById("passchange-tab");
+    profileTab.style.display = "none"; 
+}
+
+// Function to show the add change tab
+document.getElementById("addchange-link").addEventListener("click", function (event) {
+    event.preventDefault(); 
+    const profileTab = document.getElementById("addchange-tab");
+    profileTab.style.display = "block"; 
+});
+
+// Function to close the Add change tab
+function closeAddChangeTab() {
+    const profileTab = document.getElementById("addchange-tab");
+    profileTab.style.display = "none"; 
+}
+
+
+// Function to show the add change tab
+document.getElementById("mailchange-link").addEventListener("click", function (event) {
+    event.preventDefault(); 
+    const profileTab = document.getElementById("mailchange-tab");
+    profileTab.style.display = "block"; 
+});
+
+// Function to close the Add change tab
+function closeMailChangeTab() {
+    const profileTab = document.getElementById("mailchange-tab");
+    profileTab.style.display = "none"; 
+}
+
+// Optional: Close the tab when clicking outside of it
+// window.addEventListener("click", function (event) {
+//     const profileTab = document.getElementById("profile-tab");
+//     if (event.target === profileTab) {
+//         profileTab.style.display = "none";
+//     }
+// });
+
+    </script>
+</body>
+
+</html>

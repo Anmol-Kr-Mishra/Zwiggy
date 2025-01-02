@@ -1,0 +1,1202 @@
+/* General Styles */
+body {
+  user-select: none;
+  font-family: "Poppins", sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.res_header {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 20px 0 40px;
+  color: #2c3e50;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+p {
+  align-items: center;
+  font-family: "Times New Roman", Times, serif;
+  font-size: larger;
+}
+
+.res_header::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: #e74c3c;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+/*User Info css*/
+/* 
+.user-info-card {
+  user-select: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 999; 
+  width: 150px;
+  padding: 15px;
+  background-color: #ffffff;
+   border-radius: 8px;
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column; 
+  gap: 10px; 
+  align-items: center; 
+}
+
+.user-info-header {
+  display: flex;
+  align-items: center;
+   gap: 10px; 
+  width: 100%;
+}
+
+.user-info-card img {
+  user-select: none;
+  width: 50px; 
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover; 
+  border: 1px solid #ddd;
+}
+
+.user-info-card h3 {
+  user-select: none;
+  margin: 0;
+  font-size: 1rem; 
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+.user-info-footer {
+   width: 100%; 
+  display: flex;
+}
+
+.user-info-logout-btn {
+  padding: 4px 6px;
+
+  font-size: 0.9rem;
+  color: white;
+  background-color: #474444; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  width: 100%; 
+}
+
+.user-info-logout-btn:hover {
+  /* background-color: #ffffff; 
+  color: #474444;
+  border: 1px solid #474444; 
+} */ 
+/* Search Bar */
+.search-form {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-form input[type="text"] {
+  padding: 10px 15px;
+  width: 350px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.search-form input[type="text"]:focus {
+  border-color: #e74c3c;
+  outline: none;
+}
+
+.search-form button {
+  padding: 10px 20px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.search-form button:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}
+
+/* Create new button */
+/* Create New Button Container */
+.create-new-button-container {
+  display: flex; /* Changed to flex for better control over button alignment */
+  justify-content: center; /* Center the buttons */
+  gap: 20px; /* Reduce the gap between buttons for tighter alignment */
+  padding: 20px; /* Add padding for spacing */
+  box-sizing: border-box;
+  max-width: 100%; /* Ensure it scales properly on all screen sizes */
+  margin-top: 20px; /* Add spacing from the content above */
+}
+
+/* Individual Create New Button */
+/* Create New Button Container */
+.create-new-button-container {
+  display: flex;
+  justify-content: center; /* Center buttons horizontally */
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  flex-wrap: wrap; /* Allow wrapping for better responsiveness */
+  margin-top: 30px;
+}
+
+/* Individual Create New Button */
+.create-new-button {
+  background-color: #ffffff; /* White background */
+  border-radius: 10px; /* Soft rounded corners */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  width: 280px; /* Fixed width for buttons */
+  height: 60px; /* Fixed height for uniform buttons */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center text inside button */
+}
+
+.create-new-button:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+.create-new-button a {
+  text-decoration: none;
+  font-size: 1.1rem; /* Slightly larger font */
+  font-weight: 600;
+  color: #2c3e50; /* Dark text color */
+  text-align: center;
+  padding: 12px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ecf0f1; /* Light grey background */
+  border: none;
+  border-radius: 10px; /* Match the button's rounded corners */
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.create-new-button a:hover {
+  background-color: #3498db; /* Change to blue on hover */
+  color: #ffffff; /* Change text to white */
+  transform: scale(1.05); /* Slightly zoom in when hovering */
+}
+
+/* Additional button customization */
+.create-new-button a:active {
+  transform: scale(0.98); /* Slight shrink when clicked */
+  background-color: #2980b9; /* Darker blue on click */
+}
+
+
+
+/* Restaurant Container */
+.restaurants-container {
+  /* position: fixed; */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+  /* box-sizing: border-box; */
+}
+
+/* Restaurant Item */
+.restaurant-item {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.restaurant-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.restaurant-item a {
+  text-decoration: none;
+  display: block;
+  padding: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  text-align: center;
+  background: linear-gradient(to right, #ecf0f1, #ffffff);
+  transition: background 0.3s, color 0.3s;
+}
+
+.restaurant-item a:hover {
+  background: linear-gradient(to right, #e74c3c, #c0392b);
+  color: white;
+}
+
+
+/* menu of the restros */
+
+/* Restaurant Menu Container */
+.menu-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  padding: 20px;
+  margin: 40px auto;
+  box-sizing: border-box;
+}
+
+/* Menu Item Card */
+.menu-item {
+  background: linear-gradient(to bottom right, #ffffff, #f9f9f9);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  font-family: "Poppins", sans-serif;
+}
+
+/* .menu-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+} */
+
+/* Dish Image */
+.menu-item img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 4px solid #e74c3c;
+}
+
+/* Dish Content */
+.menu-item .content {
+  padding: 20px;
+  text-align: center;
+}
+
+.menu-item .content h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.menu-item .content p {
+  font-size: 0.95rem;
+  color: #7f8c8d;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+/* Price Styling */
+.menu-item .content .price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #e74c3c;
+  margin-top: 10px;
+  display: inline-block;
+  padding: 6px 12px;
+  border: 2px solid #e74c3c;
+  border-radius: 8px;
+  background: #fff5f5;
+}
+
+/* Add to Cart Button */
+.menu-item .content .add-to-cart-btn {
+  /* position: fixed; */
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-color: #e74c3c;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.menu-item .content .add-to-cart-btn:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}
+
+/* Hover Overlay for Images (Optional) */
+/* .menu-item .image-overlay {
+  position: relative;
+} */
+
+/* .menu-item .image-overlay::after {
+  content: "View Dish";
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(231, 76, 60, 0.8);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+} */
+/* 
+.menu-item:hover .image-overlay::after {
+  display: block;
+  opacity: 1;
+} */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .menu-container {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-item img {
+    height: 160px;
+  }
+
+  .menu-item .content h3 {
+    font-size: 1.2rem;
+  }
+
+  .menu-item .content p {
+    font-size: 0.85rem;
+  }
+}
+
+/* No Results */
+.no-results {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  margin-top: 20px;
+}
+  
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .search-form input[type="text"] {
+    width: 100%;
+  }
+}
+
+
+/* Container for the quantity controls */
+.quantity-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Add space between buttons and input */
+  margin-top: 10px; /* Add space from the content */
+}
+
+/* Buttons to increase or decrease quantity */
+.quantity-btn {
+  background-color: #e74c3c; /* Attractive blue color */
+  border: 2px solid #e74c3c; /* Match the button border with the background */
+  border-radius: 50%; /* Make the button round */
+  padding: 10px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease; /* Smooth transition */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+}
+
+.quantity-btn:hover {
+  background-color: #e74c3c; /* Darker blue on hover */
+  border-color: #e74c3c;
+  transform: scale(1.1); /* Slightly increase size on hover */
+}
+
+.quantity-btn:active {
+  background-color: #e74c3c; /* Darker shade when clicked */
+  border-color: #e74c3c;
+  transform: scale(1); /* Return to normal size when clicked */
+}
+
+/* Input field for quantity */
+.quantity-input {
+  width: 50px;
+  padding: 5px;
+  text-align: center;
+  font-size: 16px;
+  border: 2px solid #e74c3c;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.quantity-input:focus {
+  outline: none; /* Remove outline when input is focused */
+  border-color: #e74c3c; /* Highlight border when focused */
+  box-shadow: 0 0 5px #e74c3c(0, 91, 255, 0.5); /* Add subtle glow effect */
+}
+
+/* Add to Cart Button */
+.add-to-cart-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+  border-radius: 5px;
+  width: 100%; /* Make the button take up full width */
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #218838;
+}
+
+.add-to-cart-btn:active {
+  background-color: #1e7e34;
+}
+/* Style for the fixed cart button */
+.cart-container {
+  position: fixed;
+  bottom: 20px; /* Distance from the bottom */
+  right: 20px;  /* Distance from the right */
+  z-index: 1000; /* Ensure the button stays on top of other content */
+}
+
+.cart-button {
+  background-color: #007bff; /* A professional blue color */
+  color: white;
+  padding: 12px 18px;
+  border-radius: 50%;
+  border: none;
+  font-size: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  width: 60px;
+  height: 60px; /* Perfect circle for the button */
+}
+
+.cart-button:hover {
+  background-color: #0056b3; /* Slightly darker blue on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More prominent shadow on hover */
+  transform: scale(1.05); /* Slight scaling effect */
+}
+
+.cart-icon {
+  font-size: 26px; /* Icon size */
+}
+
+.cart-item-count {
+  position: absolute;
+  top: -2px;
+  right: 5px;
+  background-color: #ff6f61; /* Soft coral red for the count bubble */
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 5px 5px;
+  font-size: 14px;
+  border: 2px solid white; /* White border to make it stand out */
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .quantity-container {
+    gap: 5px;
+  }
+
+  .quantity-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+
+  .quantity-input {
+    width: 40px;
+    font-size: 14px;
+  }
+
+  .add-to-cart-btn {
+    width: 100%;
+  }
+}
+
+/* 
+position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999; */
+/* Positioning the log-out button at the top-right corner */
+/* Styling the logout button */
+/* Logout Button */
+/* Logout Button */
+.logout-button {
+  display: inline-block;
+  margin: 8px 15px;
+  padding: 8px 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 10px; /* Less rounded */
+  background: rgba(255, 255, 255, 0.5); /* Transparent background */
+  color: #e74c3c; /* Red color text */
+  border: 1px solid rgba(231, 76, 60, 0.5); /* Smaller border */
+  box-shadow: 0 4px 10px rgba(231, 76, 60, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.admin_dashboard-button {
+  position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 999; 
+  display: inline-block;
+  margin: 8px 15px;
+  padding: 8px 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none; /* Remove underline */
+  border-radius: 10px; /* Less rounded */
+  background: rgba(255, 255, 255, 0.5); /* Transparent background */
+  color: #e74c3c; /* Red color text */
+  border: 1px solid rgba(231, 76, 60, 0.5); /* Smaller border */
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.admin_dashboard-button a {
+  color: inherit; /* Inherit the color from parent */
+  text-decoration: none; /* Remove underline from link */
+  display: inline-block; /* Ensures proper padding and alignment */
+}
+
+.admin_dashboard-button:hover {
+  background: rgba(216, 10, 10, 0.5); /* Slightly more visible red background on hover */
+  border-color: rgba(231, 76, 60, 0.999); /* Darker red border on hover */
+  color: #fff; /* White text on hover */
+ 
+  transform: translateY(-3px); /* Lift the button on hover */
+}
+
+.admin_dashboard-button:active {
+  transform: translateY(2px); /* Button presses down on click */
+  box-shadow: 0 3px 8px rgba(231, 76, 60, 0.3); /* Red shadow for pressed effect */
+}
+
+
+.logout-button a {
+  color: inherit; /* Inherit the color from parent */
+  text-decoration: none; /* Remove underline from link */
+  display: inline-block; /* Ensures proper padding and alignment */
+}
+
+.logout-button:hover {
+  background: rgba(216, 10, 10, 0.5); /* Slightly more visible red background on hover */
+  border-color: rgba(231, 76, 60, 0.999); /* Darker red border on hover */
+  color: #fff; /* White text on hover */
+ 
+  transform: translateY(-3px); /* Lift the button on hover */
+}
+
+.logout-button:active {
+  transform: translateY(2px); /* Button presses down on click */
+  box-shadow: 0 3px 8px rgba(231, 76, 60, 0.3); /* Red shadow for pressed effect */
+}
+
+
+/* Transparent Login and Register Buttons */
+.cta-login, .cta-register {
+  display: inline-block;
+  margin: 8px 15px;
+  padding: 8px 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 10px; /* Less rounded */
+  background: rgba(255, 255, 255, 0.5); /* Transparent background */
+  color: #e74c3c; /* Red color text */
+  border: 1px solid rgba(231, 76, 60, 0.5); /* Smaller border */
+  box-shadow: 0 4px 10px rgba(231, 76, 60, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-login:hover, .cta-register:hover {
+  background: rgba(142, 68, 173, 0.4); /* Slightly more visible background on hover */
+  border-color: rgba(155, 89, 182, 0.8); /* Darker red border on hover */
+  color:  #fff; /* White text on hover */
+  box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+  transform: translateY(-3px); /* Lift the button on hover */
+}
+
+.cta-login:active, .cta-register:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 8px rgba(231, 76, 60, 0.3);
+}
+
+.top-buttons {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.top-buttons a {
+  margin-left: 10px;
+}
+
+.login-button {
+  position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999; 
+  display: inline-block;
+  margin: 8px 15px;
+  padding: 8px 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none; /* Remove underline */
+  border-radius: 10px; /* Less rounded */
+  background: rgba(255, 255, 255, 0.5); /* Transparent background */
+  color: #e74c3c; /* Red color text */
+  border: 1px solid rgba(231, 76, 60, 0.5); /* Smaller border */
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+.login-button a {
+  color: inherit; /* Inherit the color from parent */
+  text-decoration: none; /* Remove underline from link */
+  display: inline-block; /* Ensures proper padding and alignment */
+}
+
+.login-button:hover {
+  background: rgba(216, 10, 10, 0.5); /* Slightly more visible red background on hover */
+  border-color: rgba(231, 76, 60, 0.999); /* Darker red border on hover */
+  color: #fff; /* White text on hover */
+ 
+  transform: translateY(-3px); /* Lift the button on hover */
+}
+
+.login-button:active {
+  transform: translateY(2px); /* Button presses down on click */
+  box-shadow: 0 3px 8px rgba(231, 76, 60, 0.3); /* Red shadow for pressed effect */
+}
+/* Positioning the logout button */
+
+.top-buttons {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.top-buttons a {
+  margin-left: 10px;
+}
+
+/* General Flash Message Container */
+.flash-messages {
+  width: 100%;
+  max-width: 500px;
+  /* margin: 10px auto;
+  padding: 10px 20px; */
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Success Flash Message */
+.flash-messages.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* Error Flash Message */
+.flash-messages.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Warning Flash Message */
+.flash-messages.warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+/* Info Flash Message */
+.flash-messages.info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+/* Dismiss Button (Optional) */
+.flash-messages .close {
+  float: right;
+  color: inherit;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  transition: all 0.3s;
+  z-index: 9999;
+  padding-top: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sidebar-header h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #f2f2f2;
+}
+
+.user-info-card {
+  background-color: #444;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.user-info-header img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.user-info-header h4 {
+  color: #f2f2f2;
+  font-size: 16px;
+  margin: 0;
+}
+
+.user-info-footer {
+  margin-top: 10px;
+}
+
+.user-info-logout-btn {
+  text-decoration: none;
+  color: #fff;
+  background-color: #e74c3c;
+  padding: 5px 15px;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+
+.user-info-logout-btn:hover {
+  background-color: #ffff;
+  color:#000000
+}
+
+.sidebar-nav {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar-nav li {
+  padding: 10px 20px;
+  border-bottom: 1px solid #555;
+}
+
+.sidebar-nav li a {
+  color: #f2f2f2;
+  text-decoration: none;
+  display: block;
+}
+
+/* .sidebar-nav li a:hover {
+  background-color: #fff;
+} */
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+  font-size: 30px;
+  cursor: pointer;
+  color: #333;
+  padding: 10px;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10000;
+}
+.close-btn {
+  font-size: 30px;
+  cursor: pointer;
+  color: #fff;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.main-content {
+  margin-left: 0;
+  transition: margin-left 0.3s;
+  padding: 20px;
+}
+
+/* Adjustments for content area when sidebar is active */
+.sidebar.active + .main-content {
+  margin-left: 250px;
+}
+
+/* Header and User Info styles for the main content */
+.header {
+  padding: 20px;
+  background-color: #f4f4f4;
+  margin-bottom: 20px;
+}
+
+.header .user-info-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header .user-info-header {
+  display: flex;
+  align-items: center;
+}
+
+.header .user-info-header img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.header .user-info-header h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* Profile Tab Styles */
+.profile-tab {
+  display: none; /* Initially hidden */
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  width: 350px; 
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+.profile-tab .profile-tab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #34495e;
+  color: white;
+  border-radius: 8px 8px 0 0;
+  font-size: 18px;
+}
+
+.profile-tab .profile-tab-header .close-profile-tab {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.profile-tab .profile-tab-content {
+  padding: 20px;
+  font-size: 16px;
+}
+
+.profile-tab .profile-tab-content p {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.profile-tab .profile-tab-content input[type="text"],
+.profile-tab .profile-tab-content input[type="email"],
+.profile-tab .profile-tab-content input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.profile-tab .profile-tab-content input[type="text"]:focus,
+.profile-tab .profile-tab-content input[type="email"]:focus,
+.profile-tab .profile-tab-content input[type="password"]:focus {
+  border-color: #2980b9;
+  outline: none;
+}
+
+.profile-tab .profile-tab-content .submit-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.profile-tab .profile-tab-content .submit-btn:hover {
+  background-color: #c0392b;
+}
+
+.profile-tab .flash-message {
+  margin: 10px 0;
+  padding: 10px;
+  color: #fff;
+  background-color: #e74c3c;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.profile-tab .flash-message.success {
+  background-color: #27ae60;
+}
+
+.profile-tab .flash-message.error {
+  background-color: #e74c3c;
+}
+
+
+
+/* Change Password Tab Styles */
+.change-password-tab {
+  display: none; /* Initially hidden */
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  width: 400px;
+  max-width: 100%;
+  background: #ffffff;
+  border-radius: 12px;
+  z-index: 1000;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  /* padding: 5px; */
+  animation: slideIn 0.2s ease-out;
+  overflow: hidden;
+}
+
+/* Header Styles */
+.change-password-tab .profile-tab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 22px;
+  padding: 15px;
+  background: #34495e;
+  color: white;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+}
+
+.change-password-tab .profile-tab-header .close-profile-tab {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 26px;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  transition: transform 0.2s ease;
+}
+
+.change-password-tab .profile-tab-header .close-profile-tab:hover {
+  transform: scale(1.2);
+}
+
+/* Content Section */
+.change-password-tab .profile-tab-content {
+  padding: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Flash Messages */
+.change-password-tab .flash-messages {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.change-password-tab .flash-messages ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.change-password-tab .flash-messages li {
+  font-size: 16px;
+}
+
+/* Input Fields */
+.change-password-tab input {
+  width: 80%;
+  padding: 14px;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  border: 2px solid #bdc3c7;
+  font-size: 16px;
+  background-color: #f5f5f5;
+  transition: all 0.3s ease;
+}
+
+/* Focus State for Inputs */
+.change-password-tab input:focus {
+  border-color: #e74c3c;
+  outline: none;
+  background-color: #fff;
+}
+
+/* Error Styling for Mismatched Passwords */
+.change-password-tab input.error {
+  border-color: #e74c3c;
+  background-color: #fce4e4;
+}
+
+/* Submit Button */
+.change-password-tab .submit-btn {
+  width: 100%;
+  padding: 15px;
+  background-color: #e74c3c;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 20px;
+}
+
+.change-password-tab .submit-btn:hover {
+  background-color: #c0392b;
+  transform: translateY(-3px);
+}
+
+/* Label Styles */
+.change-password-tab label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: inline-block;
+  color: #34495e;
+}
+
+/* Form Group */
+.change-password-tab .form-group {
+  margin-bottom: 20px;
+}
+
+/* Keyframes for Sliding In */
+@keyframes slideIn {
+  from {
+    transform: translate(-50%, -20%) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -20%) scale(1);
+    opacity: 1;
+  }
+}

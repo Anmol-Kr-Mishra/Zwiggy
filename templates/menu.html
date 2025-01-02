@@ -1,0 +1,70 @@
+<html>
+
+<head>
+  <link rel="icon" href="{{ url_for('static', filename='Zwiggylogo3.jpg') }}" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='restaurant.css') }}">
+</head>
+
+<body>
+
+  <div class="pane">
+
+    <!-- Restaurant Header -->
+    <div class="restaurants-container">
+      <h1>{{ restaurant.name }}</h1>
+    </div>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-messages container">
+      {% for category, message in messages %}
+      <p class="flash-messages {{ category }}">{{ message }}</p>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <!-- Buttons for Creating and Deleting Menu -->
+    <div class="create-new-button">
+      <a href="{{ url_for('newMenuItem', restaurant_id=restaurant.id) }}" class="create-new-button">Create New Item</a>
+    </div>
+<!-- 
+	<div class="create-new-button">
+		<form action="{{ url_for('delete', restaurant_id=restaurant.id) }}" method="POST" style="display:inline;">
+		  <button type="submit" class="delete-button">Delete Restaurant</button>
+		</form>
+	  </div> -->
+	  
+
+    <!-- Menu Items -->
+    <div class="menu-container">
+      {% for i in items %}
+      <div class="menu-item">
+        <!-- Dish Image Placeholder (Optional: Replace with actual image) -->
+        <div class="image-overlay">
+			<img src="{{ url_for('static', filename='img.jpg') }}" alt="{{ i.name }}">
+
+        </div>
+
+        <!-- Dish Details -->
+        <div class="content">
+          <h3>{{ i.name }}</h3>
+          <p>{{ i.description }}</p>
+          <span class="price">₹{{ i.price }}</span>
+          
+          <!-- Edit and Delete Buttons -->
+          <div class="editdeletepane">
+            <a href="{{ url_for('editMenuItem', restaurant_id=restaurant.id, menu_id=i.id) }}" class="add-to-cart-btn">Rename</a>
+            <a href="{{ url_for('deleteMenuItem', restaurant_id=restaurant.id, menu_id=i.id) }}" class="add-to-cart-btn">Erase</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+
+</body>
+
+</html>

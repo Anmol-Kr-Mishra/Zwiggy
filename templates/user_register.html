@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Portal</title>
+    <link rel="icon" href="{{ url_for('static', filename='Zwiggylogo3.jpg') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='user_register.css') }}">
+</head>
+<body>
+    <div class="portal-container">
+        <!-- Tabs for Switching Between Login and Register -->
+        <div class="tabs">
+            <button class="tab-button active" id="login-tab">Login</button>
+            <button class="tab-button" id="register-tab">Register</button>
+        </div>
+
+
+        <!-- Login Form -->
+        <div class="form-container" id="login-form">
+            <h1>Customer Log In</h1>
+
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <p class="{{ category }}">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="{{ url_for('user_login') }}">
+                <input type="text" name="username" placeholder="Enter your username" required>
+                <input type="password" name="password" placeholder="Enter your password" required>
+
+                <div class="captcha-container">
+                    <div class="captcha">
+                        <img id="login-captcha-image" src="{{ url_for('captcha_image') }}" alt="Captcha Image" />
+                    </div>
+                    <a href="#" class="refresh-captcha" data-captcha-id="login-captcha-image">Refresh</a>
+                </div>
+
+                <input
+                    type="text"
+                    name="captcha"
+                    placeholder="Enter the CAPTCHA text"
+                    class="captcha-input"
+                    required
+                />
+              
+                <a href="#" class="forgot_password" id="passchange-link">Forgot Password?</a>
+
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+
+
+
+
+</script>
+        <!-- Register Form -->
+        <div class="form-container hidden" id="register-form">
+            <h1>Create a Customer Account</h1>
+
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <p class="{{ category }}">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="{{ url_for('user_register') }}">
+                <input type="text" name="username" placeholder="Enter your username" required>
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <input type="password" name="password" placeholder="Enter your password" required>
+                <input type="number" name="contact" placeholder="Enter your contact number" required>
+                <input type = "address" name="address" placeholder="Enter your address" rows="4" required></textarea>
+
+                <!-- Custom CAPTCHA -->
+                <div class="captcha-container">
+                    <div class="captcha">
+                        <img id="register-captcha-image" src="{{ url_for('captcha_image') }}" alt="Captcha Image" />
+                    </div>
+                    <a href="#" class="refresh-captcha" data-captcha-id="register-captcha-image">Refresh</a>
+                </div>
+
+                <input
+                    type="text"
+                    name="captcha"
+                    placeholder="Enter the CAPTCHA text"
+                    class="captcha-input"
+                    required
+                />
+
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching logic
+        const loginTab = document.getElementById('login-tab');
+        const registerTab = document.getElementById('register-tab');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+
+        loginTab.addEventListener('click', () => {
+            loginTab.classList.add('active');
+            registerTab.classList.remove('active');
+            loginForm.classList.remove('hidden');
+            registerForm.classList.add('hidden');
+        });
+
+        registerTab.addEventListener('click', () => {
+            registerTab.classList.add('active');
+            loginTab.classList.remove('active');
+            registerForm.classList.remove('hidden');
+            loginForm.classList.add('hidden');
+        });
+
+        // CAPTCHA refresh logic
+        document.querySelectorAll('.refresh-captcha').forEach(refreshLink => {
+            refreshLink.addEventListener('click', function (event) {
+                event.preventDefault();
+                const captchaId = this.getAttribute('data-captcha-id');
+                const captchaImage = document.getElementById(captchaId);
+                const newCaptchaUrl = "{{ url_for('captcha_image') }}" + "?t=" + new Date().getTime();
+                captchaImage.src = newCaptchaUrl;
+            });
+        });
+    </script>
+
+<div id="passchange-tab" class="change-password-tab">
+    <div class="profile-tab-header">
+        <span>Change Password </span>
+        <button class="close-profile-tab" onclick="closePassChangeTab()">×</button>
+
+    </div>
+    <div class="profile-tab-content">
+                <!-- Flash Messages -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+            <!-- <div class="flash-messages container"> -->
+                {% for category, message in messages %}
+                <p class="flash-messages {{ category }}">{{ message }}</p>
+                {% endfor %}
+                </div>
+                {% endif %}
+                {% endwith %}
+        <form action="{{ url_for('verify_otp') }}" method="POST" id="change-password-form">
+        
+            
+            <p>Enter Username :</p>
+            <input type="text" name="username" id="username" required>
+
+            <a href="#" class="forgot_password" id="send_otp">Send OTP</a>
+
+            <div id="otp-section" class="hidden">
+                <p>Enter OTP :</p>
+                <input type="text" name="user_otp" id="user_otp" required>
+                <button type="submit" class="submit-btn" id="submit-btn">Verify OTP</button>
+
+            </div>
+
+            
+        </form>
+    </div>
+</div>
+
+<script>
+
+document.getElementById("passchange-link").addEventListener("click", function (event) {
+    event.preventDefault(); 
+    const profileTab = document.getElementById("passchange-tab");
+
+    profileTab.style.display = "block"; 
+});
+
+    document.getElementById("send_otp").addEventListener("click", function(event) {
+        event.preventDefault();
+        
+        const username = document.getElementById("username").value;
+
+        fetch('/send-otp', {
+            method: 'POST',
+            body: JSON.stringify({ username: username }),
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(document.getElementById("otp-section").classList.remove("hidden"))
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                 document.getElementById("otp-section").classList.remove("hidden");
+            } if (!data.success) {
+            alert(`Error: ${data.message}`);
+        }
+
+        });
+
+        document.getElementById("new-password-section").classList.remove("hidden");
+    });
+
+    function closePassChangeTab() {
+        const profileTab = document.getElementById("passchange-tab");
+        profileTab.style.display = "none"; 
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<html>
+
+<head>
+  <title>{{ restaurant.name }}</title>
+  <link rel="icon" href="{{ url_for('static', filename='Zwiggylogo3.jpg') }}" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='restaurant.css') }}">
+</head>
+
+<body>
+  
+  <div class="pane">
+
+    <!-- Restaurant Header -->
+    <div class="restaurants-container">
+      <h1>{{ restaurant.name }}</h1>
+    </div>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-messages container">
+      {% for category, message in messages %}
+      <p class="flash-messages {{ category }}">{{ message }}</p>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <!-- Menu Items -->
+    <div class="menu-container">
+      {% for i in items %}
+      <div class="menu-item">
+        <!-- Dish Image Placeholder (Optional: Replace with actual image) -->
+        <div class="image-overlay">
+          <img src="{{ url_for('static', filename='img.jpg') }}" alt="{{ i.name }}">
+        </div>
+
+        <!-- Dish Details -->
+        <div class="content">
+          <h3>{{ i.name }}</h3>
+          <p>{{ i.description }}</p>
+          <span class="price">₹{{ i.price }}</span>
+
+          <!-- Add to cart form -->
+          <form action="{{ url_for('add_item', menu_item_id=i.id) }}" method="POST">
+            <!-- Quantity input with +/- buttons -->
+            <div class="quantity-container">
+              <button type="button" class="quantity-btn" id="decrease-btn-{{ i.id }}">-</button>
+              <input type="number" name="quantity" id="quantity-{{ i.id }}" value="1" min="1" class="quantity-input" required>
+              <button type="button" class="quantity-btn" id="increase-btn-{{ i.id }}">+</button>
+            </div>
+            <!-- Add to Cart button -->
+            <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+
+  <script>
+    // Event listeners for increment/decrement buttons
+    document.querySelectorAll('.quantity-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        var quantityInput = this.parentElement.querySelector('input');
+        var currentValue = parseInt(quantityInput.value);
+        if (this.id.includes('increase')) {
+          quantityInput.value = currentValue + 1;
+        } else if (this.id.includes('decrease') && currentValue > 1) {
+          quantityInput.value = currentValue - 1;
+        }
+      });
+    });
+  </script>
+<div class="cart-container">
+  <!-- Cart Button -->
+  <button class="cart-button" onclick="goToCartPage()">
+    <span class="cart-icon">🛒</span>
+    
+    <span class="cart-item-count" id="cart-item-count"></span>
+  </button>
+</div>
+
+<script>
+  // Update cart item count dynamically (replace this with actual logic)
+  function updateCartItemCount(itemCount) {
+    document.getElementById('cart-item-count').textContent = itemCount;
+  }
+
+  // Example: Update the cart with 5 items
+  updateCartItemCount(cart_items);
+
+  // This function can be triggered to navigate to the cart page
+  function goToCartPage() {
+    window.location.href = "/view_cart"; // Replace with your actual cart page URL
+  }
+</script>
+
+</body>
+
+</html>
